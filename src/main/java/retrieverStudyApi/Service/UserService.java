@@ -21,6 +21,7 @@ public class UserService {
         if(userRepository.findByEmail(user.getEmail()).isPresent()){
             throw new RuntimeException("Email already registered");
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setCreatedAt(LocalDateTime.now());
         return userRepository.save(user);
     }
