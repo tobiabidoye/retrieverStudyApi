@@ -2,7 +2,7 @@ package retrieverStudyApi.Service;
 
 import java.time.LocalDateTime;
 
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import retrieverStudyApi.Entity.User;
@@ -11,9 +11,10 @@ import retrieverStudyApi.Repository.UserRepository;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository){
+    private final PasswordEncoder passwordEncoder;
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder){
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User RegisterUser(User user){
